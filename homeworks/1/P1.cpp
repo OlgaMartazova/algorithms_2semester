@@ -1,9 +1,3 @@
-/*
- * P1.cpp
- *
- *  Created on: 2 мар. 2021 г.
- *      Author: Olga
- */
 #include <iostream>
 
 using namespace std;
@@ -40,7 +34,7 @@ elem* another_head(elem* head) {
 	while (cur) {
 		next = cur->next;
 		cur->next = prev;
-		//сдвиг
+		//Г±Г¤ГўГЁГЈ
 		prev = cur;
 		cur = next;
 	}
