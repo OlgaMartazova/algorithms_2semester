@@ -18,16 +18,7 @@ elem* add(elem* head, int x) {
   return p;
 }
 
-void print_list(elem* head) {
-	elem* p = head;
-	while (p) {
-		cout << p->val << " ";
-		p = p->next;
-	}
-	cout << endl;
-}
-
-elem* another_head(elem* head) {
+void reverse_print(elem* head) {
 	elem* cur = head;
 	elem* prev = NULL;
 	elem* next = NULL;
@@ -39,7 +30,13 @@ elem* another_head(elem* head) {
 		cur = next;
 	}
 	head = prev;
-	return head;
+
+	elem* p = head;
+	while (p) {
+			cout << p->val << " ";
+			p = p->next;
+		}
+		cout << endl;
 }
 elem* f1(elem* head, int n) {
 	if (n>1) {
@@ -68,7 +65,7 @@ int main() {
 	cin >> n;
 	elem* head = empty_list();
 	head = add(head, 2);
-	print_list(another_head(f1(head, n)));
+	reverse_print(f1(head, n));
 	return 0;
 }
 
