@@ -33,11 +33,12 @@ void reverse_print(elem* head) {
 
 	elem* p = head;
 	while (p) {
-			cout << p->val << " ";
-			p = p->next;
-		}
-		cout << endl;
+		cout << p->val << " ";
+		p = p->next;
+	}
+	cout << endl;
 }
+
 elem* f1(elem* head, int n) {
 	if (n>1) {
 		int i = 1;
