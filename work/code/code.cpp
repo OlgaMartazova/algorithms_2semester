@@ -9,18 +9,16 @@ struct BloomFilter {
 	bool* cell;
 };
 
-void addElement(int const& x, BloomFilter bf) {
-	for (auto iter = bf.hashFunctions.begin(); iter != bf.hashFunctions.end(); ++iter) {
-		bf.cell[(*iter)(x) % bf.numberOfCells] = true;
-		//cout << (*iter)(x) % bf.numberOfCells << endl;
+void addItem(int const& x, BloomFilter bf) {
+	for (auto it = bf.hashFunctions.begin(); it != bf.hashFunctions.end(); ++it) {
+		bf.cell[(*it)(x) % bf.numberOfCells] = true;
 	}
 }
 
-bool checkElement(int const& x, BloomFilter bf) {
+bool checkItem(int const& x, BloomFilter bf) {
 	bool intInSet = true;
-	for (auto iter = bf.hashFunctions.begin(); iter != bf.hashFunctions.end(); ++iter) {
-		//cout << (*iter)(x) % bf.numberOfCells << endl;
-		if (!bf.cell[(*iter)(x) % bf.numberOfCells]) {
+	for (auto it = bf.hashFunctions.begin(); it != bf.hashFunctions.end(); ++it) {
+		if (!bf.cell[(*it)(x) % bf.numberOfCells]) {
 			intInSet = false;
 			break;
 		}
@@ -58,7 +56,6 @@ int main() {
 	    cells[i] = false;
 	}
 	bf.cell = cells;
-	//empty(bf);
 
 	// insert numbers into the filter
 	// possible input: positive numbers and 0
@@ -66,18 +63,19 @@ int main() {
 	int x;
 	cin >> x;
 	while (x != -1) {
-		addElement(x, bf);
+		addItem(x, bf);
 		cin >> x;
 	}
 	cout << "Bloom filter has filled" << endl;
-	cout << "check if element was present in set" << endl;
+	cout << "Check if an item was present in set" << endl;
+
 	// testing numbers against the bloom filter
 	// possible input: positive numbers and 0
 	// -1 is the end of input
 	int y;
 	cin >> y;
 	while (y != -1) {
-		if (!checkElement(y, bf))
+		if (!checkItem(y, bf))
 			cout << y << " surely is not present" << endl;
 		else cout << y << " was probably present" << endl;
 		cin >> y;
