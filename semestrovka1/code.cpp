@@ -57,7 +57,7 @@ int main() {
 
 	BloomFilter bf;
 	bf.hashFunctions = hashFunctions;
-	// ввод количества чисел в множестве
+	// enter the number of items in the filter
 	int n;
 	cin >> n;
 	bf.numberOfCells = round (5 * n / log(2));
@@ -67,8 +67,8 @@ int main() {
 	}
 	bf.cell = cells;
 	int count = 0;
-	// ввод чисел - элементов множества
-	// доступный ввод - натуральные числа и 0
+	// enter numbers into the filter
+	// possible input: positive integer and 0
 	int x;
 	while (count < n) {
 		cin >> x;
@@ -78,9 +78,9 @@ int main() {
 	cout << "Bloom filter has filled" << endl;
 	cout << "Check if an item was present in set" << endl;
 
-	// ввод чисел для проверки на отсутствие в множестве
-	// доступный ввод - натуральные числа и 0
-	// -1 - признак конца ввода
+	// testing numbers against the bloom filter
+	// possible input: positive integer and 0
+	// -1 is the end of input
 	int y;
 	cin >> y;
 	while (y != -1) {
@@ -91,8 +91,9 @@ int main() {
 	}
 	return 0;
 }
-//Задача: проверить число на отсутствие в множестве чисел
-//вводится число n - количество чисел в множестве
-//вводится n чисел - элементы множества
-//вводятся числа для проверки
-//ввод оканчивается -1
+//task - testing that the number was not in the set
+//enter n - number of elements in set
+//enter n numbers of the set
+//possible numbers - positive integer and 0
+//enter number to test
+//-1 indicates the end of the input
