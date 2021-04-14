@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
-public class Test {
+public class Data {
     public static void main(String[] args) throws IOException {
         Random random = new Random();
         FileOutputStream fos = new FileOutputStream(".\\input.txt");
