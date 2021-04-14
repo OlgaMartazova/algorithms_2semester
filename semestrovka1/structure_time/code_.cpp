@@ -1,8 +1,10 @@
 #include <iostream>
 #include <list>
 #include <cmath>
+#include <chrono>
+#include <cstdio>
 using namespace std;
-
+using namespace std::chrono;
 const int N = 100000;
 struct BloomFilter {
     int numberOfCells;
@@ -70,11 +72,22 @@ int main() {
     // enter numbers into the filter
     // possible input: positive integer and 0
     int x;
-    while (count < n) {
-        cin >> x;
-        addItem(x, bf);
-        count ++;
+    FILE * add = fopen (".\\structure_time\\add.txt", "a");
+    int countAdd = 0;
+    for (int l = 0; l < 10; l ++) {
+        auto start = high_resolution_clock::now();
+        while (count < n) {
+            cin >> x;
+            addItem(x, bf);
+            count ++;
+        }
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(stop - start);
+        countAdd += duration.count();
     }
+    countAdd = (int) countAdd / 10;
+    fprintf(add,"%i\t%i\n", n, countAdd);
+
     //cout << "Bloom filter has filled" << endl;
     //cout << "Check if an item was present in set" << endl;
 
@@ -83,12 +96,22 @@ int main() {
     // -1 is the end of input
     int y;
     cin >> y;
-    while (y != -1) {
-        if (!checkItem(y, bf)){}
-             //cout << y << " surely is not present" << endl;
-        //else cout << y << " was probably present" << endl;
-        cin >> y;
+    FILE * check = fopen (".\\structure_time\\check.txt", "a");
+    int countCheck = 0;
+    for (int l = 0; l < 10; l ++) {
+        auto start = high_resolution_clock::now();
+        while (y != -1) {
+            if(!checkItem(y, bf)) {}
+            //cout << y << " surely is not present" << endl;
+            //else cout << y << " was probably present" << endl;
+            cin >> y;
+        }
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(stop - start);
+        countCheck += duration.count();
     }
+    countCheck = (int) countCheck / 10;
+    fprintf(check,"%i\t%i\n", n, countCheck);
     return 0;
 }
 //task - testing that the number was not in the set
