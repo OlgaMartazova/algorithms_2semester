@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     ifstream in;
     //file with 100 sets of data
-    in.open(".\\input.txt");
+    in.open(".\\data_set\\input.txt");
     for (int t = 0; t < 100; t ++) {
         int x;
         in >> x;
@@ -23,7 +23,7 @@ int main() {
             out << x << endl;
         }
         out.close();
-        system(".\\structure\\code_.exe < .\\output.txt");
+        system(".\\structure_time\\code_.exe < .\\output.txt");
     }
     in.close();
     return 0;
